@@ -14,7 +14,7 @@ class ShowUserProfileUseCase {
         if (userExists) {
             return userExists;
         }
-        throw new Error("User doesnt exist");
+        throw new Error("User doesn`t exist");
     }
 }
 
