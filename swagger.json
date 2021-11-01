@@ -1,0 +1,138 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "User API Documentation",
+        "description": "User api documentation",
+        "version": "1.0.0",
+        "contact": {
+            "email": "mateuspragana@gmail.com"
+        }
+    },
+    "paths": {
+        "/users/{user_id}": {
+            "get": {
+                "summary": "Info of a specific user",
+                "description": "Get info of a specific user",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the user to retrieve",
+                        "type": "uuid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Expected response to a valid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "admin": {
+                                            "type": "boolean"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "id": "40c413ae-3899-4165-9a0e-4377bc927039",
+                                    "name": "Jose Elias de Abreu",
+                                    "admin": false,
+                                    "email": "jose@gmail.com",
+                                    "created_at": "2021-01-01 01:01:01",
+                                    "updated_at": "2021-01-01 01:01:01"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User doenst exist"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "summary": "List of all users",
+                "description": "Get a list of all users",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "header",
+                        "required": true,
+                        "description": "The id of the user that is requesting the users info",
+                        "type": "uuid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A default response of a success request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "admin": {
+                                                "type": "boolean"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            },
+                                            "updated_at": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "example": {
+                                            "id": "40c413ae-3899-4165-9a0e-4377bc927039",
+                                            "name": "Jose Elias de Abreu",
+                                            "admin": false,
+                                            "email": "jose@gmail.com",
+                                            "created_at": "2021-01-01 01:01:01",
+                                            "updated_at": "2021-01-01 01:01:01"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "You are not a admin"
+                    }
+                }
+            }
+        }
+    }
+}
