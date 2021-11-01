@@ -11,8 +11,8 @@
     "paths": {
         "/users/{user_id}": {
             "get": {
-                "summary": "Info of a specific user",
-                "description": "Get info of a specific user",
+                "summary": "Get specific user`s info",
+                "description": "Get specific user`s info",
                 "tags": [
                     "Users"
                 ],
@@ -21,13 +21,13 @@
                         "name": "user_id",
                         "in": "path",
                         "required": true,
-                        "description": "The id of the user to retrieve",
+                        "description": "The id of the user to retrieve the information",
                         "type": "uuid"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Expected response to a valid request",
+                        "description": "User information",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -65,7 +65,7 @@
                         }
                     },
                     "404": {
-                        "description": "User doenst exist"
+                        "description": "User doens`t exist"
                     }
                 }
             }
@@ -88,7 +88,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "A default response of a success request",
+                        "description": "A default response of a success request to get all users",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -129,7 +129,7 @@
                         }
                     },
                     "400": {
-                        "description": "You are not a admin"
+                        "description": "You must be admin"
                     }
                 }
             },
@@ -200,7 +200,68 @@
                         }
                     },
                     "400": {
-                        "description": "A bad request that means that user email is already registered"
+                        "description": "User`s email is already registered"
+                    }
+                }
+            }
+        },
+        "/users/{user_id}/admin": {
+            "patch": {
+                "summary": "Turn a user into admin",
+                "description": "Turn a user into admin",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "User`s id that will get the admin role",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User got admin role",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "admin": {
+                                            "type": "boolean"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "id": "40c413ae-3899-4165-9a0e-4377bc927039",
+                                    "name": "Jose Elias de Abreu",
+                                    "admin": true,
+                                    "email": "jose@gmail.com",
+                                    "created_at": "2021-01-01 01:01:01",
+                                    "updated_at": "2021-01-01 01:01:01"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User doesn`t exist"
                     }
                 }
             }
