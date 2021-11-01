@@ -82,7 +82,7 @@
                         "name": "user_id",
                         "in": "header",
                         "required": true,
-                        "description": "The id of the user that is requesting the users info",
+                        "description": "The id of the user that requests the users info",
                         "type": "uuid"
                     }
                 ],
@@ -130,6 +130,77 @@
                     },
                     "400": {
                         "description": "You are not a admin"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new user",
+                "description": "Create a new user (admin = fase) as default",
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "Jose de Abreu oliveira",
+                                    "email": "jose@gmail.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "A default success response of creating a new user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "admin": {
+                                            "type": "boolean"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "id": "40c413ae-3899-4165-9a0e-4377bc927039",
+                                        "name": "Jose Elias de Abreu",
+                                        "admin": false,
+                                        "email": "jose@gmail.com",
+                                        "created_at": "2021-01-01 01:01:01",
+                                        "updated_at": "2021-01-01 01:01:01"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "A bad request that means that user email is already registered"
                     }
                 }
             }
